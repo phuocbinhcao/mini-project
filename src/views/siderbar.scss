@@ -1,0 +1,25 @@
+.sidenav {
+  height: 100vh;
+  position: fixed;
+  background-color: #ea933a;
+  text-align: center;
+  width: 15%;
+  a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    border-bottom: 2px solid white;
+  }
+  a:hover {
+    color: #6360e8;
+    font-weight: 700;
+    border-bottom: 3px solid #6360e8;
+  }
+  .selected {
+    color: #6360e8;
+    font-weight: 700;
+    border-bottom: 3px solid #6360e8;
+  }
+}

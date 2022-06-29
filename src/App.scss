@@ -1,0 +1,17 @@
+.App {
+  display: flex;
+}
+.siderbar-container {
+  width: 15%;
+}
+
+.task-container {
+  margin: 20px;
+  width: 85%;
+  .all-task {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 210px 210px 210px;
+  }
+}
