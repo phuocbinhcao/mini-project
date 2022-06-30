@@ -11,7 +11,7 @@ const DoneTask = (props) => {
         <div className="card-task">
             <p className="title">Title: {doneTasks.title}</p>
             <p className="creator">Creator: {doneTasks.creator}</p>
-            <p className={`${(doneTasks.status === "done" && "done")}`}>
+            <p className={`${changeStatus()}`}>
                 Status:&ensp;
                 {changeStatus()}
             </p>

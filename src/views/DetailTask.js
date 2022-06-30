@@ -67,8 +67,10 @@ const DetailTask = ({ handleUpdateTask, handleDeleteTask }) => {
 
     //delete
     const handleDelete = (id) => {
-        handleDeleteTask(id);
-        history.push("/all-task");
+        if (window.confirm("Do you really want to delete task?")) {
+            handleDeleteTask(id);
+            history.push("/all-task");
+        }
     };
 
     return (

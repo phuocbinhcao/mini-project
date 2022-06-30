@@ -107,10 +107,12 @@ function App() {
 
   //delete task
   const handleDeleteTask = async (id) => {
-    console.log(">>check id: ", tasks.id);
     try {
       await deleteTaskById(id);
       await getAllListTasks();
+      await doingTaskStatus();
+      await doneTaskStatus();
+      await newTaskStatus();
     } catch (error) {
       console.log(error);
     }
@@ -126,7 +128,24 @@ function App() {
           </div>
           <div className="task-container">
             <Switch>
-              <Route path="/all-task" exact>
+              <Route path="/" exact>
+                <div className="all-task">
+                  {tasks.map((item) => {
+                    return (
+                      <AllTask
+                        key={item.id}
+                        task={item}
+                        handleGetTask={handleUpdateTask}
+                      />
+                    )
+                  })}
+                  <div className="pagination">
+
+                  </div>
+                </div>
+
+              </Route>
+              <Route path="/all-task">
                 <div className="all-task">
                   {tasks.map((item) => {
                     return (

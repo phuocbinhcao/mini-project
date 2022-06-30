@@ -1,52 +1,20 @@
 {
   "listTasks": [
     {
-      "id": 1,
-      "title": "1212",
-      "creator": "qwqw",
-      "createAt": "6/28/2022, 5:09:59 PM",
-      "description": "This is a Cong viec 1 This is a Cong viec 1 This is a Cong viec 1 This is a Cong viec 1",
-      "status": "doing"
-    },
-    {
-      "title": "cong veic 2",
-      "creator": "binh1",
-      "createAt": "6/29/2022, 4:34:27 PM",
-      "description": "asdflkj",
-      "status": "new",
-      "id": 2347
-    },
-    {
       "id": 4329,
       "title": "232323",
       "creator": "1212",
       "createAt": "6/29/2022, 4:36:33 PM",
       "description": "1212",
-      "status": "done"
-    },
-    {
-      "id": 8372,
-      "title": "asf",
-      "creator": "asdf",
-      "createAt": "6/29/2022, 4:44:05 PM",
-      "description": "asdfasdf",
-      "status": "done"
-    },
-    {
-      "id": 6536,
-      "title": "gasd",
-      "creator": "asdf",
-      "createAt": "6/29/2022, 4:44:11 PM",
-      "description": "asdfasdf",
       "status": "doing"
     },
     {
-      "title": "asdsad",
-      "creator": "adasd",
-      "createAt": "6/29/2022, 5:02:46 PM",
-      "description": "adadsad",
+      "title": "asdasfd",
+      "creator": "sdfasdf",
+      "createAt": "6/30/2022, 6:44:21 PM",
+      "description": "asdfasdf",
       "status": "new",
-      "id": 4491
+      "id": 895
     }
   ]
 }
