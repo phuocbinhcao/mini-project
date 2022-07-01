@@ -5,7 +5,7 @@ export const getAllTasks = async () => {
     const { data } = await axiosClient.get("listTasks", {
         params: {
             _sort: "id",
-            _order: "desc"
+            _order: "desc",
         }
     })
     return data;

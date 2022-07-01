@@ -1,27 +1,27 @@
 import React from 'react';
-import "./alltask.scss";
+import "../allTasks/alltask.scss";
 
-const DoingTask = (props) => {
-    const { doingTasks } = props;
+const NewTask = (props) => {
+    const { newTask } = props;
     const changeStatus = () => {
-        if (doingTasks.status === "doing") {
-            return ("Doing")
+        if (newTask.status === "new") {
+            return ("New")
         }
     }
     return (
         <div className="card-task">
-            <p className="title">Title: {doingTasks.title}</p>
-            <p className="creator">Creator: {doingTasks.creator}</p>
+            <p className="title">Title: {newTask.title}</p>
+            <p className="creator">Creator: {newTask.creator}</p>
             <p className={`${changeStatus()}`}>
                 Status:&ensp;
                 {changeStatus()}
             </p>
             <p className="line"></p>
             <div className="description"><span>Description:</span>
-                <p>{doingTasks.description}</p>
+                <p>{newTask.description}</p>
             </div>
         </div>
     );
 };
 
-export default DoingTask;
+export default NewTask;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./detailTask.scss";
 import { useHistory, useParams } from "react-router";
-import { getTaskById } from "../apis/TaskApi";
+import { getTaskById } from "../../apis/TaskApi";
 
 const DetailTask = ({ handleUpdateTask, handleDeleteTask }) => {
     let history = useHistory();
@@ -162,6 +162,7 @@ const DetailTask = ({ handleUpdateTask, handleDeleteTask }) => {
                     </div>
                 </div>
             </div>
+
         </>
     );
 };

@@ -1,11 +1,11 @@
 import './App.scss';
 import SiderBar from './components/siderBar/SiderBar';
 import Navbar from './components/navBar/Navbar';
-import AllTask from './views/AllTask';
-import DoingTask from './views/DoingTask';
-import DoneTask from './views/DoneTask';
-import NewTask from './views/NewTask';
-import CreateTask from './views/CreateTask';
+import AllTask from './views/allTasks/AllTask';
+import DoingTask from './views/doingTasks/DoingTask';
+import DoneTask from './views/doneTasks/DoneTask';
+import NewTask from './views/newTasks/NewTask';
+import CreateTask from './views/createNewTask/CreateTask';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { createNewTask, deleteTaskById, getAllTasks, updateTaskById } from './apis/TaskApi';
-import DetailTask from './views/DetailTask';
+import DetailTask from './views/detailTask/DetailTask';
 import { LIMIT_TASK_IN_PAGE } from './constants/Data';
 import Pagination from './components/pagination/Pagination';
 import HomePage from './views/homepage/HomePage';
@@ -126,10 +126,13 @@ function App() {
     }
   }
 
-  //search task name
+  //search task name, creator
   const lowercasedFilter = dataFilter.toLowerCase();
   const dataFilterSearch = tasks.filter(item => {
-    return item.title.toUpperCase().includes(lowercasedFilter.toUpperCase());
+    return (
+      item.title.toUpperCase().includes(lowercasedFilter.toUpperCase()) ||
+      item.creator.toUpperCase().includes(lowercasedFilter.toUpperCase())
+    )
   });
 
   //input value search task
@@ -167,7 +170,7 @@ function App() {
               </Route>
               <Route path="/all-task">
                 <div className="all-task">
-                  {listPaginationPage.map((item) => {
+                  {listPaginationPage.map((item, index) => {
                     return (
                       <AllTask
                         key={item.id}
@@ -222,7 +225,7 @@ function App() {
                 </div>
 
               </Route>
-              <Route path="/create-task" exact>
+              <Route path="/create-task" >
                 <CreateTask onAddNew={onAddNew} />
               </Route>
               <Route path="/task/:id">
@@ -231,7 +234,6 @@ function App() {
                   handleDeleteTask={handleDeleteTask}
                 />
               </Route>
-
             </Switch>
           </div>
         </div>

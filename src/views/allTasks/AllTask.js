@@ -24,10 +24,6 @@ const AllTask = (props) => {
                     Status:&ensp;
                     {changeStatus()}
                 </p>
-                {/* <p className={`${(task.status === "new" && "new") || (task.status === "doing" && "doing") || (task.status === "done" && "done")}`}>
-                    Status:&ensp;
-                    {changeStatus()}
-                </p> */}
                 <p className="line"></p>
                 <div className="description"><span>Description:</span>
                     <p>{task.description}</p>
