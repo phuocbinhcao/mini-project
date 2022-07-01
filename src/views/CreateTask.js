@@ -23,7 +23,7 @@ const CreateTask = ({ onAddNew }) => {
 
     const handleSubmitForm = () => {
         onAddNew(fields);
-        history.push("/all-task")
+        history.push("/new-task")
     }
 
     return (

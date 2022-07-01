@@ -1,0 +1,1 @@
+export const LIMIT_TASK_IN_PAGE = 12;

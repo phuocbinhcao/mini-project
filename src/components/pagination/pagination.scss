@@ -1,0 +1,17 @@
+.panigation-wrapper {
+  width: 200px;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+
+  .btn {
+    margin: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .btn--active {
+    color: red;
+    font-weight: bold;
+  }
+}

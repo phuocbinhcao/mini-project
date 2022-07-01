@@ -1,6 +1,6 @@
 import './App.scss';
-import SiderBar from './views/SiderBar';
-import Navbar from './views/Navbar';
+import SiderBar from './components/siderBar/SiderBar';
+import Navbar from './components/navBar/Navbar';
 import AllTask from './views/AllTask';
 import DoingTask from './views/DoingTask';
 import DoneTask from './views/DoneTask';
@@ -14,17 +14,24 @@ import {
 import { useEffect, useState } from 'react';
 import { createNewTask, deleteTaskById, getAllTasks, updateTaskById } from './apis/TaskApi';
 import DetailTask from './views/DetailTask';
+import { LIMIT_TASK_IN_PAGE } from './constants/Data';
+import Pagination from './components/pagination/Pagination';
+import HomePage from './views/homepage/HomePage';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTasks, setNewTasks] = useState([]);
   const [doingTasks, setDoingTasks] = useState([]);
   const [doneTasks, setDoneTasks] = useState([]);
+  const [dataFilter, setDataFilter] = useState('');
+  const [currentPage, setCurrentPage] = useState(1)
+
   //list all task
   useEffect(() => {
     getAllListTasks();
   }, []);
 
+  // handleChangeSearch();
   const getAllListTasks = async () => {
     try {
       const data = await getAllTasks();
@@ -84,6 +91,7 @@ function App() {
       await getAllListTasks();
       await doingTaskStatus();
       await doneTaskStatus();
+      await newTaskStatus();
     } catch (error) {
       console.log(error);
     }
@@ -118,10 +126,34 @@ function App() {
     }
   }
 
+  //search task name
+  const lowercasedFilter = dataFilter.toLowerCase();
+  const dataFilterSearch = tasks.filter(item => {
+    return item.title.toUpperCase().includes(lowercasedFilter.toUpperCase());
+  });
+
+  //input value search task
+  const handleChangeSearch = (e) => {
+    setDataFilter(e.target.value)
+  }
+
+  //get pagination
+  const getTaskCurrentPage = () => {
+    const startIndex = currentPage * LIMIT_TASK_IN_PAGE - LIMIT_TASK_IN_PAGE;
+    return [...dataFilterSearch.slice(startIndex, startIndex + LIMIT_TASK_IN_PAGE)]
+  }
+  const listPaginationPage = getTaskCurrentPage()
+
+  const handleSetCurrentPage = (page) => {
+    setCurrentPage(page)
+  }
+
   return (
-    <>
-      <Router>
-        <Navbar />
+    <Router>
+      <div className="App-container">
+        <div className="App-container__Navbar">
+          <Navbar dataFilter={dataFilter} handleChangeSearch={handleChangeSearch} />
+        </div>
         <div className="App">
           <div className="siderbar-container">
             <SiderBar />
@@ -130,24 +162,12 @@ function App() {
             <Switch>
               <Route path="/" exact>
                 <div className="all-task">
-                  {tasks.map((item) => {
-                    return (
-                      <AllTask
-                        key={item.id}
-                        task={item}
-                        handleGetTask={handleUpdateTask}
-                      />
-                    )
-                  })}
-                  <div className="pagination">
-
-                  </div>
+                  <HomePage />
                 </div>
-
               </Route>
               <Route path="/all-task">
                 <div className="all-task">
-                  {tasks.map((item) => {
+                  {listPaginationPage.map((item) => {
                     return (
                       <AllTask
                         key={item.id}
@@ -156,11 +176,13 @@ function App() {
                       />
                     )
                   })}
-                  <div className="pagination">
-
-                  </div>
                 </div>
-
+                <Pagination
+                  currentPage={currentPage}
+                  tasks={tasks}
+                  limit={LIMIT_TASK_IN_PAGE}
+                  handleSetCurrentPage={handleSetCurrentPage}
+                />
               </Route>
               <Route path="/new-task">
                 <div className="all-task">
@@ -213,8 +235,8 @@ function App() {
             </Switch>
           </div>
         </div>
-      </Router>
-    </>
+      </div>
+    </Router>
   );
 }
 

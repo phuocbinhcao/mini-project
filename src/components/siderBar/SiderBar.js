@@ -1,6 +1,6 @@
 import React from 'react';
-import "../views/siderbar.scss";
 import { NavLink } from "react-router-dom";
+import './siderbar.scss'
 
 const SiderBar = () => {
     return (
